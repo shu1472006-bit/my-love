@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Megha ❤️</title>
+
+<style>
+body{
+  margin:0;
+  height:100vh;
+  background:black;
+  font-family:'Courier New', monospace;
+  overflow:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:white;
+}
+
+.page{
+  display:none;
+  text-align:center;
+  animation:fadeIn 2s ease forwards;
+}
+
+@keyframes fadeIn{
+  from{opacity:0;}
+  to{opacity:1;}
+}
+
+/* BUTTON */
+button{
+  padding:12px 25px;
+  font-size:18px;
+  border:none;
+  border-radius:10px;
+  background:#ff4d6d;
+  color:white;
+  margin:10px;
+}
+
+/* NAME */
+#name{
+  font-size:38px;
+  color:#ffb3c6;
+  animation:glow 2s infinite alternate, beat 1.5s infinite;
+}
+@keyframes glow{
+  from{text-shadow:0 0 5px #ff4d6d;}
+  to{text-shadow:0 0 20px #ff4d6d;}
+}
+@keyframes beat{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.1);}
+  100%{transform:scale(1);}
+}
+
+/* IMAGE */
+img{
+  width:180px;
+  height:180px;
+  border-radius:50%;
+  object-fit:cover;
+  margin:15px auto;
+  opacity:0;
+  animation:photoFade 4s ease forwards;
+  animation-delay:1s;
+  box-shadow:0 0 20px #ff4d6d;
+}
+@keyframes photoFade{
+  from{opacity:0; transform:scale(0.8);}
+  to{opacity:1; transform:scale(1);}
+}
+
+/* ROSE RAIN */
+.rose{
+  position:absolute;
+  animation:fall 6s linear infinite;
+  font-size:24px;
+}
+@keyframes fall{
+  0%{transform:translateY(-10vh);opacity:1;}
+  100%{transform:translateY(110vh);opacity:0;}
+}
+
+/* PASSWORD SCREEN */
+#lock{
+  text-align:center;
+}
+input{
+  padding:12px;
+  font-size:18px;
+  border-radius:10px;
+  border:none;
+  outline:none;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- PASSWORD SCREEN -->
+<div id="lock">
+  <h2>🔐 Enter the secret password</h2>
+  <input type="password" id="pass" placeholder="Password">
+  <br>
+  <button onclick="unlock()">Unlock ❤️</button>
+</div>
+
+<!-- PAGE 1: LOVE MESSAGE -->
+<div class="page" id="page1">
+  <div id="name">Megha 💖</div>
+  <img src="megha.jpg">
+  <h3>I love you megha jannn..💗<br>You are not my gf<br>You are my wife ❤️</h3>
+  <button onclick="nextPage('page2')">Next ➡️</button>
+</div>
+
+<!-- PAGE 2: QUESTION -->
+<div class="page" id="page2">
+  <h2>Do stay whole life with me? 🥺💍</h2>
+  <button onclick="nextPage('yesPage')">Yes ❤️</button>
+  <button onclick="nextPage('noPage')">No 💔</button>
+</div>
+
+<!-- YES PAGE -->
+<div class="page" id="yesPage">
+  <h1>uuuummmmmaaahhh lokkhi jan😘</h1>
+  <h2>tmi amr lokkhi pakhi❤️i love you infinity❤️</h2>
+</div>
+
+<!-- NO PAGE -->
+<div class="page" id="noPage">
+  <h2>na jannn 😭</h2>
+  <h3>plz stay with me. tmi amr lokkhi bow💗</h3>
+  <h4>click back and click on Yes button 💔</h4>
+  <button onclick="nextPage('page2')">🔙 Back</button>
+</div>
+
+<script>
+const password = "2oct2025";
+
+/* SHOW PASSWORD SCREEN INITIALLY */
+document.getElementById("lock").style.display="block";
+
+/* UNLOCK FUNCTION */
+function unlock(){
+  const input = document.getElementById("pass").value;
+  if(input === password){
+    document.getElementById("lock").style.display="none";
+    document.getElementById("page1").style.display="block";
+    setInterval(createRose,300);
+  }else{
+    alert("Wrong password 😈");
+  }
+}
+
+/* NEXT PAGE FUNCTION */
+function nextPage(id){
+  document.querySelectorAll(".page").forEach(p=>p.style.display="none");
+  document.getElementById(id).style.display="block";
+}
+
+/* ROSE RAIN */
+function createRose(){
+  const r=document.createElement("div");
+  r.className="rose";
+  r.innerHTML="🌺";
+  r.style.left=Math.random()*100+"vw";
+  document.body.appendChild(r);
+  setTimeout(()=>r.remove(),6000);
+}
+</script>
+
+</body>
+</html>
